@@ -1,6 +1,7 @@
 services:
 
   init-bootnode-secrets:
+    user: "1000"
     extends:
       file: ./node/compose.yaml
       service: init
@@ -11,6 +12,7 @@ services:
     extends:
       file: ./node/compose.yaml
       service: edge
+    user: "1000"
     volumes:
       - ./genesis-init.sh:/app/genesis-init.sh
       - ./bootnode:/app
@@ -20,6 +22,7 @@ services:
         condition: service_completed_successfully
 
   bootnode:
+    user: "1000"
     extends:
       file: ./node/compose.yaml
       service: server

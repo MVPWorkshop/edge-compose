@@ -14,7 +14,7 @@ services:
     command: [
       "polygon-edge",
       "server",
-      "--data-dir", "/app/data",
+      "--data-dir", "/app/",
       "--chain", "/app/genesis.json",
       "--grpc-address", "0.0.0.0:9632",
       "--libp2p", "0.0.0.0:1478",
