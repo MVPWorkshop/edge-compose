@@ -1,0 +1,18 @@
+services:
+  faucet:
+    image: chainflag/eth-faucet:1.1.0
+    environment:
+      WEB3_PROVIDER: ${JSON_RPC_URL}
+      PRIVATE_KEY: ${PRIVATE_KEY} 
+    ports:
+      - 8080:8080
+    networks:
+      - chain
+
+networks:
+  chain:
+    external: true
+    name: ${EXTERNAL_NETWORK_NAME}
+
+
+
