@@ -32,6 +32,19 @@ services:
       init-bootnode-genesis:
         condition: service_completed_successfully
 
+  alise:
+    extends:
+      file: ./node/compose.yaml
+      service: server
+    ports:
+      - 8546:8545
+      - 1479:1478
+    volumes:
+      - ./bootnode/genesis.json:/app/genesis.json
+      - ./alise:/app
+    depends_on:
+      init-bootnode-genesis:
+        condition: service_completed_successfully
 
 
 
