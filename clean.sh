@@ -1,2 +1,2 @@
-rm -Rf ./bootnode
-rm -Rf ./alise
+rm -Rf ./validator-*
+rm -Rf ./genesis.json
