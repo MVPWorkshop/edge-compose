@@ -11,6 +11,7 @@ services:
   server:
     build:
       context: .
+    restart: always
     command: [
       "polygon-edge",
       "server",
