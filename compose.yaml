@@ -1,0 +1,37 @@
+services:
+
+  init-bootnode-secrets:
+    extends:
+      file: ./node/compose.yaml
+      service: init
+    volumes:
+      - ./bootnode:/app
+
+  init-bootnode-genesis:
+    extends:
+      file: ./node/compose.yaml
+      service: edge
+    volumes:
+      - ./genesis-init.sh:/app/genesis-init.sh
+      - ./bootnode:/app
+    command: ./genesis-init.sh
+    depends_on:
+      init-bootnode-secrets:
+        condition: service_completed_successfully
+
+  bootnode:
+    extends:
+      file: ./node/compose.yaml
+      service: server
+    ports:
+      - 8545:8545
+      - 1478:1478
+    volumes:
+      - ./bootnode:/app
+    depends_on:
+      init-bootnode-genesis:
+        condition: service_completed_successfully
+
+
+
+
